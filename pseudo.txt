@@ -1,0 +1,17 @@
+main(){
+    init_pipex(); --> intialize necessary structures
+    check_args(); --> check and handle input args
+    parse_args_cmds(); --> literally parse commands and arguments lol
+    whiçe (cmds)
+        execute(); --> execute commands in a pipeline
+    cleanup() --> prevent leaks grrrrr
+}
+
+--------------------------------
+
+Envp
+    extracts path from Envp
+    splits it into directories
+    search for commands in those directories
+    uses execute
+
