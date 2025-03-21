@@ -6,7 +6,7 @@
 /*   By: bpires-r <bpires-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:42:31 by bpires-r          #+#    #+#             */
-/*   Updated: 2025/03/20 08:54:11 by bpires-r         ###   ########.fr       */
+/*   Updated: 2025/03/21 13:21:43 by bpires-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct  s_pipex
 	char    **cmd_paths;
 	char    **cmd_args;
 	int			cmd_count;
-	int     **pipes;
+	int			**pipes;
 	pid_t		*pids;
 }               t_pipex;
 
@@ -62,5 +62,7 @@ void    ft_create_pipes(t_pipex *pipex);
 void ft_close_all(t_pipex *pipex);
 
 void ft_fork_processes(t_pipex *pipex, char **argv, char **envp);
+
+void safe_free_resources(t_pipex *pipex);
 
 #endif

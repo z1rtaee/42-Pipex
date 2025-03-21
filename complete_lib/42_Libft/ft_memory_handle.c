@@ -6,7 +6,7 @@
 /*   By: bpires-r <bpires-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 05:30:28 by bpires-r          #+#    #+#             */
-/*   Updated: 2025/03/20 08:18:30 by bpires-r         ###   ########.fr       */
+/*   Updated: 2025/03/21 13:20:18 by bpires-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	free_ar(void **ar)
 {
 	int	i;
 
+	if(!ar)
+		return ;
 	i = -1;
 	while (ar[++i])
 		free(ar[i]);

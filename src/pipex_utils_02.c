@@ -6,7 +6,7 @@
 /*   By: bpires-r <bpires-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 12:44:48 by bpires-r          #+#    #+#             */
-/*   Updated: 2025/03/21 10:45:37 by bpires-r         ###   ########.fr       */
+/*   Updated: 2025/03/21 13:30:17 by bpires-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_extract_cmd_args(t_pipex *pipex, char *cmd)
 	if (!pipex->cmd_args || !pipex->cmd_args[0])
 	{
 		ft_putendl_fd("Error: Command parsing failed!", 2);
+        free_resources(pipex);
 		exit(1);
 	}
 }
@@ -97,6 +98,8 @@ void    ft_create_pipes(t_pipex *pipex)
         if (pipe(pipex->pipes[i]) == -1)
         {
             ft_putendl_fd("Error creating pipe", 2);
+            ft_close_all(pipex);
+            free_resources(pipex);
             exit(1);
         }
         i++;
@@ -119,9 +122,39 @@ void free_resources(t_pipex *pipex)
         free(pipex->pipes[i]);
         i++;
     }
+    free_ar((void **)pipex->cmd_paths);
+    free_ar((void **)pipex->cmd_args);
     free(pipex->pipes);
     free(pipex->pids);
 }
+
+void safe_free_resources(t_pipex *pipex)
+{
+    int i = 0;
+
+    if(!pipex)
+        return ;
+    if(pipex->pipes)
+    {
+        while (i < pipex->cmd_count - 1) {
+            if(pipex->pipes[i])
+                free(pipex->pipes[i]);
+            i++;
+        }
+        free(pipex->pipes);
+        pipex->pipes = NULL;
+    }
+    free_ar((void **)pipex->cmd_paths);
+    pipex->cmd_paths = NULL;
+    free_ar((void **)pipex->cmd_args);
+    pipex->cmd_args = NULL;
+    if(pipex->pids)
+    {
+        free(pipex->pids);
+        pipex->pids = NULL;
+    }
+}
+
 
 void ft_fork_processes(t_pipex *pipex, char **argv, char **envp)
 {
@@ -151,10 +184,14 @@ void ft_close_all(t_pipex *pipex)
     int i = 0;
     while (i < pipex->cmd_count - 1)
     {
-        close(pipex->pipes[i][0]); 
-        close(pipex->pipes[i][1]); 
+        if (pipex->pipes[i][0] >= 0)
+            close(pipex->pipes[i][0]); 
+        if (pipex->pipes[i][1] >= 0)
+            close(pipex->pipes[i][1]); 
         i++;
     }
-    close(pipex->input_fd);
-    close(pipex->output_fd);
+    if (pipex->input_fd >= 0)
+        close(pipex->input_fd);
+    if (pipex->output_fd >= 0)
+        close(pipex->output_fd);
 }

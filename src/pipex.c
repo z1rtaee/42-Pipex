@@ -6,7 +6,7 @@
 /*   By: bpires-r <bpires-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:59:28 by bpires-r          #+#    #+#             */
-/*   Updated: 2025/03/20 09:40:58 by bpires-r         ###   ########.fr       */
+/*   Updated: 2025/03/21 13:35:30 by bpires-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void    ft_pipex(t_pipex *pipex, int argc, char **argv, char **envp)
             ft_putendl_fd("Memory allocation failed", 2);
             exit(1);
         }
+        pipex->pipes[i][0] = -1;
+        pipex->pipes[i][1] = -1;
         i++;
     }
     pipex->pipes[i] = NULL;

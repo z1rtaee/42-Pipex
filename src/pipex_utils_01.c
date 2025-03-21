@@ -6,7 +6,7 @@
 /*   By: bpires-r <bpires-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:59:31 by bpires-r          #+#    #+#             */
-/*   Updated: 2025/03/21 08:59:04 by bpires-r         ###   ########.fr       */
+/*   Updated: 2025/03/21 12:54:09 by bpires-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void    ft_init_pipex(t_pipex *pipex)
 	pipex->cmd_paths = NULL;
 	pipex->cmd_args = NULL;
 	pipex->cmd_count = 0;
-	pipex->pids = NULL;
 	pipex->pipes = NULL;
+	pipex->pids = NULL;
 }
 
 void    ft_check_args(int argc, char **argv, t_pipex *pipex)
@@ -61,6 +61,7 @@ void    ft_check_args(int argc, char **argv, t_pipex *pipex)
 	if (pipex->output_fd == -1)
 	{
 		ft_putendl_fd("Error opening output file", 2);
+		close(pipex->input_fd);
 		exit(1);
 	}
 	//close(pipex->output_fd);
