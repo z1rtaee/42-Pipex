@@ -6,7 +6,7 @@
 /*   By: bpires-r <bpires-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:59:31 by bpires-r          #+#    #+#             */
-/*   Updated: 2025/03/20 09:01:37 by bpires-r         ###   ########.fr       */
+/*   Updated: 2025/03/21 08:59:04 by bpires-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,3 @@ void	ft_path_dir(t_pipex *pipex, char **envp)
 		exit(1);
 	pipex->cmd_paths = ft_split(path, ':');
 }
-

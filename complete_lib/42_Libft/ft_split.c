@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zirtaee <zirtaee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bpires-r <bpires-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:45:15 by bpires-r          #+#    #+#             */
-/*   Updated: 2024/11/16 00:49:02 by zirtaee          ###   ########.fr       */
+/*   Updated: 2025/03/21 10:39:35 by bpires-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,6 @@ char	**ft_split(char const *s, char c)
 // {
 // 	unsigned int i = 0;
 // 	unsigned int j = 0;
-// 	char *s = "The array of new strings resulting";
-// 	char c = ' ';
-// 	char **r = ft_split(s, c);
-// 	while (r[i][j])
-// 	{
-// 		while (r[i][j])
-// 		{
-// 			printf("%c", r[i][j]);
-// 			j++;
-// 		}
-// 		printf("\n");
-// 		j = 0;
-// 		i++;
-// 	}
+// 	printf("%p\n", *ft_split("               ", ' '));
 // 	return (0);
 // }
