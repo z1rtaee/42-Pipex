@@ -6,7 +6,7 @@
 /*   By: bpires-r <bpires-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:41:13 by bpires-r          #+#    #+#             */
-/*   Updated: 2025/03/28 16:47:50 by bpires-r         ###   ########.fr       */
+/*   Updated: 2025/03/29 05:31:57 by bpires-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_find_path(char **envp)
 		i++;
 	}
 	if (!res)
-		return (ft_putendl_fd("Path not found", 2), NULL);
+		res = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
 	return (res);
 }
 
