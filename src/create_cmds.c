@@ -6,7 +6,7 @@
 /*   By: bpires-r <bpires-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:41:13 by bpires-r          #+#    #+#             */
-/*   Updated: 2025/03/29 06:54:05 by bpires-r         ###   ########.fr       */
+/*   Updated: 2025/03/29 07:17:42 by bpires-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ char	*ft_find_cmd_path(t_pipex *pipex)
 		i++;
 	}
 	if (access(pipex->cmd_args[0], X_OK) == 0)
-			return (ft_strdup(pipex->cmd_args[0]));
+		return (ft_strdup(pipex->cmd_args[0]));
 	return (NULL);
 }
