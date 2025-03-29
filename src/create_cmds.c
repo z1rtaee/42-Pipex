@@ -6,7 +6,7 @@
 /*   By: bpires-r <bpires-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 17:41:13 by bpires-r          #+#    #+#             */
-/*   Updated: 2025/03/29 05:31:57 by bpires-r         ###   ########.fr       */
+/*   Updated: 2025/03/29 06:54:05 by bpires-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_find_path(char **envp)
 		}
 		i++;
 	}
-	if (!res)
+	if (!*envp)
 		res = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
 	return (res);
 }
@@ -38,8 +38,6 @@ void	ft_path_dir(t_pipex *pipex, char **envp)
 	char	*path;
 
 	path = ft_find_path(envp);
-	if (!path)
-		exit(1);
 	pipex->cmd_paths = ft_split(path, ':');
 }
 
@@ -60,7 +58,7 @@ char	*ft_find_cmd_path(t_pipex *pipex)
 	int		i;
 
 	i = 0;
-	while (pipex->cmd_paths[i])
+	while (pipex->cmd_paths && pipex->cmd_paths[i])
 	{
 		tmp_path = ft_strjoin(pipex->cmd_paths[i], "/");
 		final_path = ft_strjoin(tmp_path, pipex->cmd_args[0]);
@@ -70,5 +68,7 @@ char	*ft_find_cmd_path(t_pipex *pipex)
 		free(final_path);
 		i++;
 	}
+	if (access(pipex->cmd_args[0], X_OK) == 0)
+			return (ft_strdup(pipex->cmd_args[0]));
 	return (NULL);
 }
